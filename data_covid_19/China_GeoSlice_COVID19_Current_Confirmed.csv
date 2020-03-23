@@ -1,20 +1,20 @@
 Province/State,Confirmed
 Hubei,67800
-Guangdong,1400
+Guangdong,1407
 Henan,1273
-Zhejiang,1236
+Zhejiang,1237
 Hunan,1018
 Anhui,990
-Jiangxi,935
-Shandong,764
-Jiangsu,631
-Chongqing,576
-Sichuan,542
+Jiangxi,936
+Shandong,766
+Jiangsu,633
+Chongqing,577
+Sichuan,543
 Heilongjiang,484
-Beijing,504
-Shanghai,380
-Hebei,318
-Fujian,303
+Beijing,514
+Shanghai,394
+Hebei,319
+Fujian,307
 Guangxi,254
 Shaanxi,248
 Yunnan,176
@@ -22,13 +22,13 @@ Hainan,168
 Guizhou,146
 Tianjin,137
 Shanxi,133
-Gansu,134
-Hong Kong,273
+Gansu,136
+Hong Kong,317
 Liaoning,126
 Jilin,93
 Xinjiang,76
 Inner Mongolia,75
 Ningxia,75
 Qinghai,18
-Macau,18
+Macau,20
 Tibet,1
