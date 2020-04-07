@@ -189,6 +189,28 @@ dfC_US_county
 ### End of US county confirmed time series
 
 
+# In[311]:
+
+
+### Start of US county confirmed per 100k residents time series
+
+dfC_countyPerCap = dfC_US_county.copy().transpose()
+dfC_countyPerCap_temp = df_USPop_county.copy()
+dfC_countyPerCap_temp = dfC_countyPerCap_temp[["Population"]]
+
+dfC_countyPerCap = pd.merge(dfC_countyPerCap, dfC_countyPerCap_temp, left_index=True, right_index=True, how="inner")
+dfC_countyPerCap = dfC_countyPerCap.div(dfC_countyPerCap["Population"], axis=0)
+dfC_countyPerCap = dfC_countyPerCap.mul(100000, axis=0)
+
+dfC_countyPerCap = dfC_countyPerCap.drop(columns = ["Population"])
+dfC_countyPerCap = dfC_countyPerCap.transpose()
+dfC_countyPerCap.to_csv("US_County_TimeSeries_COVID19_ConfirmedPer100k.csv", index_label="Date")
+
+dfC_countyPerCap
+#df_USPop_county
+### End of US county confirmed per 100k residents time series
+
+
 # In[284]:
 
 
@@ -224,6 +246,28 @@ dfD_US_county
 #dfD_US_county_temp
 
 ### End of US county deaths time series
+
+
+# In[313]:
+
+
+### Start of US county deaths per 100k residents time series
+
+dfD_countyPerCap = dfD_US_county.copy().transpose()
+dfD_countyPerCap_temp = df_USPop_county.copy()
+dfD_countyPerCap_temp = dfD_countyPerCap_temp[["Population"]]
+
+dfD_countyPerCap = pd.merge(dfD_countyPerCap, dfD_countyPerCap_temp, left_index=True, right_index=True, how="inner")
+dfD_countyPerCap = dfD_countyPerCap.div(dfD_countyPerCap["Population"], axis=0)
+dfD_countyPerCap = dfD_countyPerCap.mul(100000, axis=0)
+
+dfD_countyPerCap = dfD_countyPerCap.drop(columns = ["Population"])
+dfD_countyPerCap = dfD_countyPerCap.transpose()
+dfD_countyPerCap.to_csv("US_County_TimeSeries_COVID19_DeathsPer100k.csv", index_label="Date")
+
+dfD_countyPerCap
+#df_USPop_county
+### End of US county deaths per 100k residents time series
 
 
 # In[285]:
@@ -310,8 +354,8 @@ df_cross_section.to_csv("US_County_CrossSection_COVID19_Deaths.csv")
 df_cross_section
 
 
-# In[287]:
+# In[288]:
 
 
-get_ipython().system('jupyter nbconvert --to script Master US Data Cleaner.ipynb')
+get_ipython().system('jupyter nbconvert --to script master_us_data_cleaner.ipynb')
 
