@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[276]:
+# In[345]:
 
 
 import numpy as np
@@ -12,7 +12,7 @@ import re
 import datetime
 
 
-# In[277]:
+# In[ ]:
 
 
 ### Start of importing raw data from github
@@ -31,7 +31,7 @@ dfC
 ### End of importing raw data from github
 
 
-# In[278]:
+# In[ ]:
 
 
 ### Start of US population dataframe creation
@@ -63,7 +63,7 @@ df_USPop_State
 ### End of US population dataframe creation
 
 
-# In[279]:
+# In[ ]:
 
 
 ### Start of US states confirmed time series
@@ -87,7 +87,7 @@ dfC_US
 ### End of US states confirmed time series
 
 
-# In[280]:
+# In[ ]:
 
 
 ### Start of US states confirmed per 100k residents time series
@@ -107,7 +107,7 @@ dfC_perCap
 ### End of US states confirmed per 100k residents time series
 
 
-# In[281]:
+# In[ ]:
 
 
 ### Start of US states deaths time series
@@ -131,7 +131,7 @@ dfD_US
 ### End of US states deaths time series
 
 
-# In[282]:
+# In[ ]:
 
 
 ### Start of US states deaths per 100k residents time series
@@ -151,7 +151,7 @@ dfD_perCap
 ### End of US states deaths per 100k residents time series
 
 
-# In[283]:
+# In[ ]:
 
 
 ### Start of US county confirmed time series
@@ -189,7 +189,7 @@ dfC_US_county
 ### End of US county confirmed time series
 
 
-# In[311]:
+# In[ ]:
 
 
 ### Start of US county confirmed per 100k residents time series
@@ -206,12 +206,23 @@ dfC_countyPerCap = dfC_countyPerCap.drop(columns = ["Population"])
 dfC_countyPerCap = dfC_countyPerCap.transpose()
 dfC_countyPerCap.to_csv("US_County_TimeSeries_COVID19_ConfirmedPer100k.csv", index_label="Date")
 
-dfC_countyPerCap
+# Limiting Data size
+dfC_countyPerCap_limited = dfC_countyPerCap.copy().transpose()
+dfC_countyPerCap_limited = pd.merge(dfC_countyPerCap_limited, df_USPop_county, left_index=True, right_index=True, how="inner")
+selectedStates = ['Connecticut']
+dfC_countyPerCap_limited = dfC_countyPerCap_limited.loc[dfC_countyPerCap_limited['Province_State'].isin(selectedStates)]
+dfC_countyPerCap_limited = dfC_countyPerCap_limited.set_index("Admin2")
+dfC_countyPerCap_limited = dfC_countyPerCap_limited.drop(columns = ["Combined_Key", "Population", "Province_State"])
+dfC_countyPerCap.to_csv("US_CT_TimeSeries_COVID19_ConfirmedPer100k.csv", index_label="County")
+
+
+dfC_countyPerCap_limited
 #df_USPop_county
+
 ### End of US county confirmed per 100k residents time series
 
 
-# In[284]:
+# In[ ]:
 
 
 ### Start of US county deaths time series
@@ -248,7 +259,7 @@ dfD_US_county
 ### End of US county deaths time series
 
 
-# In[313]:
+# In[ ]:
 
 
 ### Start of US county deaths per 100k residents time series
@@ -265,12 +276,24 @@ dfD_countyPerCap = dfD_countyPerCap.drop(columns = ["Population"])
 dfD_countyPerCap = dfD_countyPerCap.transpose()
 dfD_countyPerCap.to_csv("US_County_TimeSeries_COVID19_DeathsPer100k.csv", index_label="Date")
 
-dfD_countyPerCap
+# Limiting Data size
+dfD_countyPerCap_limited = dfD_countyPerCap.copy().transpose()
+dfD_countyPerCap_limited = pd.merge(dfD_countyPerCap_limited, df_USPop_county, left_index=True, right_index=True, how="inner")
+selectedStates = ['Connecticut']
+dfD_countyPerCap_limited = dfD_countyPerCap_limited.loc[dfD_countyPerCap_limited['Province_State'].isin(selectedStates)]
+dfD_countyPerCap_limited = dfD_countyPerCap_limited.set_index("Admin2")
+dfD_countyPerCap_limited = dfD_countyPerCap_limited.drop(columns = ["Combined_Key", "Population", "Province_State"])
+dfD_countyPerCap.to_csv("US_CT_TimeSeries_COVID19_DeathsPer100k.csv", index_label="County")
+
+
+dfD_countyPerCap_limited
+
+#dfD_countyPerCap
 #df_USPop_county
 ### End of US county deaths per 100k residents time series
 
 
-# In[285]:
+# In[ ]:
 
 
 ### Start of US states cross section of latest data
@@ -315,7 +338,7 @@ df_cross_section
 ### End of US states cross section of latest data
 
 
-# In[286]:
+# In[ ]:
 
 
 ### Start of US county cross section of latest date
@@ -354,7 +377,7 @@ df_cross_section.to_csv("US_County_CrossSection_COVID19_Deaths.csv")
 df_cross_section
 
 
-# In[288]:
+# In[ ]:
 
 
 get_ipython().system('jupyter nbconvert --to script master_us_data_cleaner.ipynb')
