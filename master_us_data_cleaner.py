@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[391]:
+# In[415]:
 
 
 import numpy as np
@@ -12,7 +12,7 @@ import re
 import datetime
 
 
-# In[392]:
+# In[416]:
 
 
 ### Start of importing raw data from github
@@ -31,7 +31,7 @@ dfC
 ### End of importing raw data from github
 
 
-# In[393]:
+# In[417]:
 
 
 ### Start of US population dataframe creation
@@ -63,7 +63,7 @@ df_USPop_State
 ### End of US population dataframe creation
 
 
-# In[394]:
+# In[418]:
 
 
 ### Start of US states confirmed time series
@@ -87,7 +87,7 @@ dfC_US
 ### End of US states confirmed time series
 
 
-# In[395]:
+# In[419]:
 
 
 ### Start of US states confirmed per 100k residents time series
@@ -107,7 +107,7 @@ dfC_perCap
 ### End of US states confirmed per 100k residents time series
 
 
-# In[396]:
+# In[420]:
 
 
 ### Start of US states deaths time series
@@ -131,7 +131,7 @@ dfD_US
 ### End of US states deaths time series
 
 
-# In[397]:
+# In[421]:
 
 
 ### Start of US states deaths per 100k residents time series
@@ -151,7 +151,7 @@ dfD_perCap
 ### End of US states deaths per 100k residents time series
 
 
-# In[398]:
+# In[422]:
 
 
 ### Start of US county confirmed time series
@@ -189,7 +189,7 @@ dfC_US_county
 ### End of US county confirmed time series
 
 
-# In[410]:
+# In[423]:
 
 
 ### Start of US county confirmed per 100k residents time series
@@ -214,7 +214,7 @@ dfC_countyPerCap_limited = dfC_countyPerCap_limited.loc[dfC_countyPerCap_limited
 dfC_countyPerCap_limited = dfC_countyPerCap_limited.set_index("Admin2")
 dfC_countyPerCap_limited = dfC_countyPerCap_limited.drop(columns = ["Combined_Key", "Population", "Province_State"])
 dfC_countyPerCap_limited = dfC_countyPerCap_limited.transpose()
-#dfC_countyPerCap_limited.to_csv("US_CT_TimeSeries_COVID19_ConfirmedPer100k.csv", index_label="County")
+dfC_countyPerCap_limited.to_csv("US_CT_TimeSeries_COVID19_ConfirmedPer100k.csv", index_label="County")
 dfC_countyPerCap_limited = dfC_countyPerCap_limited.rename(columns={
     'Fairfield': 'Confirmed_Fairfield', 
     'Hartford': 'Confirmed_Hartford', 
@@ -231,7 +231,7 @@ dfC_countyPerCap_limited
 ### End of US county confirmed per 100k residents time series
 
 
-# In[400]:
+# In[424]:
 
 
 ### Start of US county deaths time series
@@ -268,7 +268,7 @@ dfD_US_county
 ### End of US county deaths time series
 
 
-# In[414]:
+# In[425]:
 
 
 ### Start of US county deaths per 100k residents time series
@@ -293,7 +293,7 @@ dfD_countyPerCap_limited = dfD_countyPerCap_limited.loc[dfD_countyPerCap_limited
 dfD_countyPerCap_limited = dfD_countyPerCap_limited.set_index("Admin2")
 dfD_countyPerCap_limited = dfD_countyPerCap_limited.drop(columns = ["Combined_Key", "Population", "Province_State"])
 dfD_countyPerCap_limited = dfD_countyPerCap_limited.transpose()
-#dfD_countyPerCap_limited.to_csv("US_CT_TimeSeries_COVID19_DeathsPer100k.csv", index_label="County")
+dfD_countyPerCap_limited.to_csv("US_CT_TimeSeries_COVID19_DeathsPer100k.csv", index_label="County")
 dfD_countyPerCap_limited = dfD_countyPerCap_limited.rename(columns={
     'Fairfield': 'Deaths_Fairfield', 
     'Hartford': 'Deaths_Hartford', 
@@ -315,7 +315,7 @@ df_countyPerCap_limited_final
 ### End of US county deaths per 100k residents time series
 
 
-# In[402]:
+# In[426]:
 
 
 ### Start of US states cross section of latest data
@@ -360,7 +360,7 @@ df_cross_section
 ### End of US states cross section of latest data
 
 
-# In[403]:
+# In[427]:
 
 
 ### Start of US county cross section of latest date
@@ -399,7 +399,7 @@ df_cross_section.to_csv("US_County_CrossSection_COVID19_Deaths.csv")
 df_cross_section
 
 
-# In[404]:
+# In[428]:
 
 
 get_ipython().system('jupyter nbconvert --to script master_us_data_cleaner.ipynb')
